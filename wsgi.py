@@ -13,3 +13,5 @@ except IOError:
 #
 
 from jobstore import app as application
+from jobstore import *
+db.create_all()

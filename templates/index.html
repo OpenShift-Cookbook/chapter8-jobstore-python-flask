@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JobStore</title>
+<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css" rel="stylesheet">
+<link href="{{url_for('static', filename='css/main.css', _external=True)}}" rel="stylesheet">
+</head>
+<body>
+	<div class="navbar navbar-default navbar-fixed-top navbar-inverse"
+		role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">JobStore</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<h2>Companies <a href="#companies/new" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-plus-sign"></span></a></h2>
+				<hr></hr>
+				<div id="companies" class="list-group">
+				</div>
+			</div>
+			<div id="companyView" class="col-md-offset-1 col-md-8">
+			</div>
+		</div>
+	</div>
+
+{% raw %}
+<script type="text/template" id="company-template">
+	<a href="#companies/{{id}}/jobs" class="list-group-item">
+    	<h4 class="list-group-item-heading">{{name}}</h4>
+    	<p class="list-group-item-text">{{description}}</p>
+  </a>
+</script>
+
+<script type="text/template" id="jobs-template">
+	<h2>All Jobs <a href="#companies/{{companyId}}/jobs/new" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> New Job</a></h2>
+	<hr></hr>
+</script>
+
+<script type="text/template" id="job-template">
+	<div>
+		<h2>{{title}}</h2>
+		<p class="lead">{{description}}</p>
+	</div>
+	<hr></hr>
+</script>
+
+<script type="text/template" id="company-form-template">
+	<form id="companyForm" class="form-horizontal" role="form">
+	<h2>New Company</h2>
+	<hr></hr>
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Company Name" required autofocus>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description" class="col-sm-2 control-label">Description</label>
+    <div class="col-sm-10">
+      <textarea id="description" name="description" class="form-control" placeholder="Tell about your company" required></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="contactEmail" class="col-sm-2 control-label">Contact Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="contactEmail" name="contactEmail" placeholder="Whom to contact?" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success btn-lg">New Company</button>
+    </div>
+  </div>
+</form>
+</script>
+
+<script type="text/x-mustache-template" id="job-form-template">
+	<form id="jobForm" class="form-horizontal" role="form">
+	<h2>New Job</h2>
+	<hr></hr>
+  <div class="form-group">
+    <label for="title" class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="title" name="title" placeholder="Title" required autofocus>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description" class="col-sm-2 control-label">Description</label>
+    <div class="col-sm-10">
+      <textarea id="description" name="description" class="form-control" placeholder="Job description" required></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success btn-lg">New Job</button>
+    </div>
+  </div>
+</form>
+</script>
+
+{% endraw %}
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.js"></script>
+<script type="text/javascript" src="{{url_for('static',filename='js/app.js',_external=True)}}"></script>
+</body>
+</html>
